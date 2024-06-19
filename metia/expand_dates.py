@@ -46,9 +46,15 @@ expanded_data = pd.concat(expanded_chunks)
 # Drop the original date columns and keep only the new 'Fecha' column
 expanded_data = expanded_data.drop(columns=['Fecha Llegada \n(Mes/Dia/Año)', 'Fecha Partida (Mes/Dia/Año)'])
 
+# Select only the required columns in the desired order and rename them accordingly
+expanded_data = expanded_data[['Folio', 'Fecha', 'Latitude', 'Longitude', 'Elevation (meters)', 
+                               'Pueblo, Municipio Partida', 'País', 'Horas_en_el_Lugar', 'Modo_de_Transporte', 'Comentarios']]
+
+expanded_data.columns = ['ID (Folio)', 'Date', 'Latitude', 'Longitude', 'Elevation (meters)', 'City/Town', 
+                         'Country', 'Hours at Location', 'Transit Mode (as Departed from this column\'s location)', 'comments']
+
 # Save the expanded dataframe to a new CSV file
 expanded_file_path = 'expanded_trayectos.csv'
 expanded_data.to_csv(expanded_file_path, index=False)
 
 print(f"Expanded data saved to {expanded_file_path}")
-
