@@ -13,7 +13,7 @@ data['Fecha Partida (Mes/Dia/Año)'] = pd.to_datetime(data['Fecha Partida (Mes/D
 def expand_rows(row):
     expanded = []
     if row['Porcion Viaje'] == 1:
-        if pd.notna(row['Fecha Partida (Mes/Dia/Año)']) and row['Fecha Partida (Mes/Dia/Año)'].year >= 2020:
+        if pd.notna(row['Fecha Partida (Mes/Dia/Año)']):
             new_row = row.copy()
             new_row['Fecha'] = row['Fecha Partida (Mes/Dia/Año)']
             expanded.append(new_row)
